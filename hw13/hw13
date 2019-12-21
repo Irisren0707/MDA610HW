@@ -1,0 +1,183 @@
+#1
+mysql> select name from language order by name;
++----------+
+| name     |
++----------+
+| English  |
+| French   |
+| German   |
+| Italian  |
+| Japanese |
+| Mandarin |
++----------+
+6 rows in set (0.00 sec)
+#2
+mysql> select concat(first_name,last_name) AS Fullname from actor where last_name like '%BER%' order by first_name;
++------------------+
+| Fullname         |
++------------------+
+| CHRISTOPHERBERRY |
+| DARYLWAHLBERG    |
+| HENRYBERRY       |
+| KARLBERRY        |
+| LIZABERGMAN      |
+| NICKWAHLBERG     |
+| PARKERGOLDBERG   |
+| VIVIENBERGEN     |
++------------------+
+8 rows in set (0.01 sec)
+#3
+mysql> SELECT last_name,count(last_name) FROM actor GROUP BY last_name HAVING count(last_name)=1;
++--------------+------------------+
+| last_name    | count(last_name) |
++--------------+------------------+
+| ASTAIRE      |                1 |
+| BACALL       |                1 |
+| BALE         |                1 |
+| BALL         |                1 |
+| BARRYMORE    |                1 |
+| BASINGER     |                1 |
+| BERGEN       |                1 |
+| BERGMAN      |                1 |
+| BIRCH        |                1 |
+| BLOOM        |                1 |
+| BRIDGES      |                1 |
+| BULLOCK      |                1 |
+| CARREY       |                1 |
+| CHAPLIN      |                1 |
+| CLOSE        |                1 |
+| COSTNER      |                1 |
+| CROWE        |                1 |
+| CRUISE       |                1 |
+| CRUZ         |                1 |
+| DAMON        |                1 |
+| DAY-LEWIS    |                1 |
+| DERN         |                1 |
+| DREYFUSS     |                1 |
+| DUNST        |                1 |
+| GABLE        |                1 |
+| GIBSON       |                1 |
+| GOLDBERG     |                1 |
+| GRANT        |                1 |
+| HAWKE        |                1 |
+| HESTON       |                1 |
+| HOPE         |                1 |
+| HUDSON       |                1 |
+| HUNT         |                1 |
+| HURT         |                1 |
+| JOLIE        |                1 |
+| JOVOVICH     |                1 |
+| LEIGH        |                1 |
+| LOLLOBRIGIDA |                1 |
+| MALDEN       |                1 |
+| MANSFIELD    |                1 |
+| MARX         |                1 |
+| MCDORMAND    |                1 |
+| MIRANDA      |                1 |
+| NICHOLSON    |                1 |
+| PESCI        |                1 |
+| PFEIFFER     |                1 |
+| PHOENIX      |                1 |
+| PINKETT      |                1 |
+| PITT         |                1 |
+| POSEY        |                1 |
+| PRESLEY      |                1 |
+| REYNOLDS     |                1 |
+| RYDER        |                1 |
+| SINATRA      |                1 |
+| SOBIESKI     |                1 |
+| STALLONE     |                1 |
+| SUVARI       |                1 |
+| SWANK        |                1 |
+| TAUTOU       |                1 |
+| TOMEI        |                1 |
+| VOIGHT       |                1 |
+| WALKEN       |                1 |
+| WAYNE        |                1 |
+| WILSON       |                1 |
+| WITHERSPOON  |                1 |
+| WRAY         |                1 |
++--------------+------------------+
+66 rows in set (0.00 sec)
+#4
+mysql> select description from film_list where description like '%Crocodile%' and description like '%Shark%';
++------------------------------------------------------------------------------------------------------+
+| description                                                                                          |
++------------------------------------------------------------------------------------------------------+
+| A Fanciful Documentary of a Crocodile And a Technical Writer who must Fight a A Shark in A Baloon    |
+| A Unbelieveable Drama of a Crocodile And a Mad Cow who must Reach a Dentist in A Shark Tank          |
+| A Stunning Story of a Explorer And a Forensic Psychologist who must Face a Crocodile in A Shark Tank |
+| A Brilliant Documentary of a Monkey And a Car who must Conquer a Crocodile in A Shark Tank           |
+| A Taut Story of a Waitress And a Crocodile who must Outrace a Lumberjack in A Shark Tank             |
+| A Astounding Character Study of a A Shark And a A Shark who must Discover a Crocodile in The Outback |
+| A Fast-Paced Story of a Crocodile And a A Shark who must Sink a Pioneer in Berlin                    |
+| A Taut Saga of a Crocodile And a Boat who must Conquer a Hunter in A Shark Tank                      |
+| A Astounding Yarn of a Pioneer And a Crocodile who must Defeat a A Shark in The Outback              |
++------------------------------------------------------------------------------------------------------+
+9 rows in set (0.02 sec)
+
+#5
+mysql> select actors,release_year from film a join film_list b on a.title=b.title where b.description like '%Crocodile%' and b.description like '%Shark%';
++--------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+| actors                                                                                                                                                 | release_year |
++--------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+| FRED COSTNER, JOHN SUVARI, WILLIAM HACKMAN, FAY WOOD, KIM ALLEN, EWAN GOODING, KARL BERRY                                                              |         2006 |
+| FRED COSTNER, VIVIEN BASINGER, ALBERT JOHANSSON, MEG HAWKE, HENRY BERRY, JOHNNY CAGE, KARL BERRY                                                       |         2006 |
+| MATTHEW LEIGH, JANE JACKMAN, JAYNE NOLTE, LAURA BRODY, ROCK DUKAKIS, KENNETH TORN                                                                      |         2006 |
+| VIVIEN BERGEN, MORGAN HOPKINS, SUSAN DAVIS, GINA DEGENERES, KENNETH PALTROW, PENELOPE PINKETT, SANDRA PECK, GRACE MOSTEL                               |         2006 |
+| JULIANNE DENCH, KIRSTEN PALTROW, ZERO CAGE, ALBERT NOLTE, ALBERT JOHANSSON                                                                             |         2006 |
+| MILLA KEITEL, MINNIE ZELLWEGER, KIRSTEN AKROYD, JON CHASE, GENE MCKELLEN, RAY JOHANSSON                                                                |         2006 |
+| WOODY HOFFMAN, JULIA BARRYMORE, FAY KILMER                                                                                                             |         2006 |
+| AL GARLAND, JENNIFER DAVIS, UMA WOOD, PENELOPE GUINESS, CAMERON STREEP, HUMPHREY WILLIS, MORGAN WILLIAMS, GENE WILLIS, RAY JOHANSSON, CHRISTIAN NEESON |         2006 |
+| HELEN VOIGHT, WILL WILSON, GROUCHO WILLIAMS, HUMPHREY GARLAND, AUDREY BAILEY, GRACE MOSTEL                                                             |         2006 |
++--------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+9 rows in set (0.03 sec)
+
+#6
+mysql> select name,count(film_id)as freq from category a join film_category b on a.category_id=b.category_id group by a.category_id having count(film_id)between 40 and 60 order by freq desc;
++----------+------+
+| name     | freq |
++----------+------+
+| Children |   60 |
+| Comedy   |   58 |
+| Classics |   57 |
+| Travel   |   57 |
+| Horror   |   56 |
+| Music    |   51 |
++----------+------+
+6 rows in set (0.00 sec)
+
+#7
+
+mysql>  select concat(first_name,last_name)as fullname from actor where first_name=(select first_name from actor where actor_id=24);
++------------------+
+| fullname         |
++------------------+
+| CAMERONSTREEP    |
+| CAMERONWRAY      |
+| CAMERONZELLWEGER |
++------------------+
+3 rows in set (0.00 sec)
+
+#8
+mysql> select concat(first_name,last_name) as fullname from actor where actor_id=(select actor_id from (select actor_id from film_actor group by actor_id order by count(film_id) desc limit 1) as sub);
++---------------+
+| fullname      |
++---------------+
+| GINADEGENERES |
++---------------+
+1 row in set (0.00 sec)
+
+#9
+mysql> select name, avg(length) as ave_len from category a join film_category b on a.category_id=b.category_id join film c on b.film_id=c.film_id group by a.category_id having avg(length)>(select avg(length) from film);
++---------+----------+
+| name    | ave_len  |
++---------+----------+
+| Comedy  | 115.8276 |
+| Drama   | 120.8387 |
+| Foreign | 121.6986 |
+| Games   | 127.8361 |
+| Sports  | 128.2027 |
++---------+----------+
+5 rows in set (0.01 sec)
+
